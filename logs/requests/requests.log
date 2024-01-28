@@ -1,0 +1,6 @@
+INFO 2024-01-28 06:51:29,428 
+	Module: autoreload 
+	FilePath: /Users/mac/Documents/work/Personal/projects/rnepal/venv/lib/python3.11/site-packages/django/utils/autoreload.py 
+	Function Name: run_with_reloader 
+	Line No: 668 
+	Message: Watching for file changes with StatReloader

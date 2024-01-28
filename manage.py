@@ -2,11 +2,22 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
+from django.core.management.commands.runserver import Command as runserver
+
+runserver.default_port = os.environ.get("BACKEND_PORT", 8000)  # type: ignore
 
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
+    if os.environ.get("DEBUG") == "True":
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "base.settings.dev")
+    else:
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "base.settings.prod")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -18,5 +29,5 @@ def main():
     execute_from_command_line(sys.argv)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
